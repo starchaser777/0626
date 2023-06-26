@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery 연습</title>
+    <style>
+        div.item:nth-child(1) { background: blueviolet; }
+        div.item:nth-child(2) { background: pink; }
+        div.item:nth-child(3) { background: burlywood; }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script>
+        $(document).ready(function () {
+            // data-role="slider"인 요소객체의 data-width 속성의 값을 가져와서 변수에 대입
+            var width = $('[data-role="slider"]').attr('data-width');
+            // data-role="slider"인 요소객체의 data-height 속성의 값을 가져와서 변수에 대입
+            var height = $('[data-role="slider"]').attr('data-height');
+            // data-role="slider"인 요소객체의 하위에 있는 div 중에 class가 item인 요소들의 개수를 변수에 대입
+            var count = $('[data-role="slider"] div.item').length;
+
+            $('[data-role="slider"]').css({
+                position: 'relative',
+                overflow: 'hidden',
+                width: width,
+                height: height
+            }).find('.container').css({
+                position: 'absolute',
+                width: count * width,
+                overflow: 'hidden'
+            }).find('.item').css({
+                width: width,
+                height: height,
+                float: 'left'
+            });
+        });
+
+        $(document).ready(function () {
+            var width = $('[data-role="slider"]').attr('data-width');
+            var count = $('[data-role="slider"] div.item').length;
+            // 현재페이지를 저장하는 함수 선언
+            var currentPage = 0;
+            // 함수(페이지변경 가능) 선언해서 변수에 대입
+            var changePage = function () {
+                $('[data-role="slider"] > .container').animate({
+                    left: -currentPage * width
+                }, 500);
+            };
+
+            // event listener(이벤트 발생을 감시하다가 처리한다.)
+            $('#left-button').click(function () {
+                if (currentPage > 0) {
+                    currentPage = currentPage - 1;
+                    changePage();
+                }
+            });
+
+            $('#right-button').click(function () {
+                if (currentPage < count - 1) {
+                    currentPage = currentPage + 1;
+                    changePage();
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div data-role="slider" data-width="500" data-height="300">
+        <div class="container">
+            <div class="item">
+                <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h1>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae nesciunt aut temporibus, quae iusto facilis voluptatibus quisquam, soluta fugiat quia a quasi ab accusamus aliquid tempora. Eveniet vero quae quas.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae nesciunt aut temporibus, quae iusto facilis voluptatibus quisquam, soluta fugiat quia a quasi ab accusamus aliquid tempora. Eveniet vero quae quas.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae nesciunt aut temporibus, quae iusto facilis voluptatibus quisquam, soluta fugiat quia a quasi ab accusamus aliquid tempora. Eveniet vero quae quas.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae nesciunt aut temporibus, quae iusto facilis voluptatibus quisquam, soluta fugiat quia a quasi ab accusamus aliquid tempora. Eveniet vero quae quas.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae nesciunt aut temporibus, quae iusto facilis voluptatibus quisquam, soluta fugiat quia a quasi ab accusamus aliquid tempora. Eveniet vero quae quas.
+                </p>
+            </div>
+            <div class="item">
+                <h1>Sit repellat cum earum cupiditate, velit quos harum.</h1>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam fugit enim distinctio dicta consequuntur nulla deleniti voluptas quidem laborum expedita iusto saepe fugiat, nam excepturi illo atque ratione? Consequuntur, eligendi.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam fugit enim distinctio dicta consequuntur nulla deleniti voluptas quidem laborum expedita iusto saepe fugiat, nam excepturi illo atque ratione? Consequuntur, eligendi.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam fugit enim distinctio dicta consequuntur nulla deleniti voluptas quidem laborum expedita iusto saepe fugiat, nam excepturi illo atque ratione? Consequuntur, eligendi.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam fugit enim distinctio dicta consequuntur nulla deleniti voluptas quidem laborum expedita iusto saepe fugiat, nam excepturi illo atque ratione? Consequuntur, eligendi.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam fugit enim distinctio dicta consequuntur nulla deleniti voluptas quidem laborum expedita iusto saepe fugiat, nam excepturi illo atque ratione? Consequuntur, eligendi.
+                </p>
+            </div>
+            <div class="item">
+                <h1>Autem quibusdam culpa veritatis corporis doloremque</h1>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, sed! Asperiores doloribus omnis reprehenderit corrupti deleniti voluptatem minus unde quis at. Veniam ipsa esse ut pariatur magni ea quae atque!
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, sed! Asperiores doloribus omnis reprehenderit corrupti deleniti voluptatem minus unde quis at. Veniam ipsa esse ut pariatur magni ea quae atque!
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, sed! Asperiores doloribus omnis reprehenderit corrupti deleniti voluptatem minus unde quis at. Veniam ipsa esse ut pariatur magni ea quae atque!
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, sed! Asperiores doloribus omnis reprehenderit corrupti deleniti voluptatem minus unde quis at. Veniam ipsa esse ut pariatur magni ea quae atque!
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, sed! Asperiores doloribus omnis reprehenderit corrupti deleniti voluptatem minus unde quis at. Veniam ipsa esse ut pariatur magni ea quae atque!
+                </p>
+            </div>
+        </div>
+    </div>
+    <button id="left-button">←</button>
+    <button id="right-button">→</button>
+</body>
+</html>
